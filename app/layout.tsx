@@ -1,6 +1,10 @@
+'use client'
+
 import './globals.css'
 import { Quicksand } from 'next/font/google'
 import { Providers } from './providers'
+import { usePathname } from 'next/navigation'
+import Nav from '@/components/nav'
 
 const quicksand = Quicksand({subsets: ['vietnamese']})
 
@@ -14,10 +18,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const pathname = usePathname()
+
   return (
     <html lang="en">
       <body className={quicksand.className}>
         <Providers>
+          { pathname !== '/' && <Nav /> }
           {children}
         </Providers>
       </body>
