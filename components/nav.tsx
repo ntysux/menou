@@ -7,7 +7,7 @@ export default function Nav() {
         <h1 className="text-xl text-neutral-800 tracking-widest">
           Menoú
         </h1>
-        <div className="space-x-9 flex">
+        <div className="space-x-9 hidden sm:flex">
           <PersonalPopover />
           <button className="font-medium text-neutral-800 text-sm">
             Cộng đồng
