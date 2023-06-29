@@ -1,3 +1,5 @@
+import PersonalPopover from "./personal.popover"
+
 export default function Nav() {
   return (
     <header className="bg-white sticky top-0 z-10">
@@ -5,10 +7,8 @@ export default function Nav() {
         <h1 className="text-xl text-neutral-800 tracking-widest">
           Menoú
         </h1>
-        <div className="space-x-9">
-          <button className="font-medium text-neutral-800 text-sm">
-            Cá nhân
-          </button>
+        <div className="space-x-9 flex">
+          <PersonalPopover />
           <button className="font-medium text-neutral-800 text-sm">
             Cộng đồng
           </button>
