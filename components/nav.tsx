@@ -1,3 +1,4 @@
+import NavMobile from "./nav.mobile"
 import PersonalPopover from "./personal.popover"
 
 export default function Nav() {
@@ -12,6 +13,9 @@ export default function Nav() {
           <button className="font-medium text-neutral-800 text-sm">
             Cộng đồng
           </button>
+        </div>
+        <div className="flex sm:hidden">
+          <NavMobile />
         </div>
       </nav>
     </header>
