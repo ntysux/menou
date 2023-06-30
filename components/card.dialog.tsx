@@ -1,6 +1,6 @@
 'use client'
 
-import { Data } from '@/app/home/page'
+import { Data } from '@/app/menu/page'
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 

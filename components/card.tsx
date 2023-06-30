@@ -1,4 +1,4 @@
-import { Data } from "@/app/home/page";
+import { Data } from "@/app/menu/page"
 
 export default function Card({food}: {food: Data}) {
   return (

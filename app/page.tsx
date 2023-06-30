@@ -22,7 +22,7 @@ export default function HeroPage() {
           </h1>
         </div>
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-          <Link href='/home' className="p-5 ring-1 ring-neutral-200 ring-inset rounded-lg">
+          <Link href='/menu' className="p-5 ring-1 ring-neutral-200 ring-inset rounded-lg">
             <h2 className="font-semibold text-neutral-700">Cá nhân</h2>
             <p className="text-sm text-neutral-600">Tạo lưu các món ăn của riêng bạn.</p>
           </Link>
