@@ -39,7 +39,7 @@ export default function PersonalPopover() {
   return (
     <>
       <Popover className="relative">
-        <Popover.Button className="font-medium text-neutral-800 text-sm outline-none">
+        <Popover.Button as='button' className="flex font-medium text-neutral-800 text-sm outline-none">
           Cá nhân
         </Popover.Button>
         <Popover.Overlay className="fixed inset-0 bg-neutral-500/30" />
