@@ -1,9 +1,9 @@
 'use client'
 
+import Link from "next/link"
+import { Fragment } from 'react'
 import { motion } from "framer-motion"
 import { Popover, Transition } from '@headlessui/react'
-import { Fragment } from 'react'
-import Link from "next/link"
 import { IconStack2, IconSwipe, IconTrash } from "@tabler/icons-react"
 
 interface Feature {
@@ -42,7 +42,7 @@ export default function PersonalPopover() {
         <Popover.Button className="font-medium text-neutral-800 text-sm outline-none">
           Cá nhân
         </Popover.Button>
-
+        <Popover.Overlay className="fixed inset-0 bg-neutral-500/30" />
         <Transition
           as={Fragment}
           enter="transition ease-out duration-200"
