@@ -5,13 +5,15 @@ const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpe
 
 const filled = definePartsStyle({
   control: {
-    bg: '#404040',
-    border: 'none',
-    rounded: 'lg',
+    m: 1,
+    rounded: 'full',
+    borderColor: '#d4d4d4',
     _checked: {
-      bg: '#404040',
+      bg: '#d4d4d4',
+      borderColor: '#d4d4d4',
       _hover: {
-        bg: '#404040'
+        bg: '#d4d4d4',
+        borderColor: '#d4d4d4'
       }
     }
   }
