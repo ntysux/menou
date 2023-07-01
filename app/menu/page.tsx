@@ -1,4 +1,3 @@
-import Base from "@/components/base"
 import Card from "@/components/card"
 
 export interface Data {
@@ -23,14 +22,14 @@ const data: Data[] = [
   {name: 'Thịt rang', author: 'ntysux'}
 ]
 
-export default function HomePage() {
+export default function MenuPage() {
   return (
     <>
-      <Base>
+      <div className="max-w-5xl my-3 mx-3 grid grid-cols-1 gap-3 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:mx-auto">
         {data.map((food, key) =>
           <Card key={key} food={food} />
         )}
-      </Base>
+      </div>
     </>
   )
 }
