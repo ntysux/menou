@@ -1,4 +1,3 @@
-import Banner from "@/components/banner"
 import Base from "@/components/base"
 import Card from "@/components/card"
 import CardDialog from "@/components/card.dialog"
@@ -28,10 +27,9 @@ const data: Data[] = [
 export default function HomePage() {
   return (
     <>
-      <Banner />
       <Base>
-        {data.map(food =>
-          <CardDialog food={food} key={food.name}>
+        {data.map((food, key) =>
+          <CardDialog food={food} key={key}>
             <Card food={food} />
           </CardDialog>
         )}
