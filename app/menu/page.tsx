@@ -1,6 +1,5 @@
 import Base from "@/components/base"
 import Card from "@/components/card"
-import CardDialog from "@/components/card.dialog"
 
 export interface Data {
   name: string,
@@ -29,9 +28,7 @@ export default function HomePage() {
     <>
       <Base>
         {data.map((food, key) =>
-          <CardDialog food={food} key={key}>
-            <Card food={food} />
-          </CardDialog>
+          <Card key={key} food={food} />
         )}
       </Base>
     </>
