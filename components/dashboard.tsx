@@ -5,7 +5,7 @@ export default function Dashboard() {
         <button className="p-3 rounded-lg shadow-md shadow-neutral-200/75 text-sm font-normal hover:shadow-lg">
           Món mới
         </button>
-        <button className="p-3 rounded-lg shadow-md shadow-neutral-200/75 text-sm font-normal hover:shadow-lg">
+        <button className="p-3 text-sm font-normal hover:font-medium">
           +0 được chọn
         </button>
       </div>
