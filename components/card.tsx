@@ -2,11 +2,61 @@
 
 import { Data } from '@/app/menu/page'
 import { Checkbox } from '@chakra-ui/react'
-import { Dialog, Transition } from '@headlessui/react'
+import { Dialog, Transition, Tab } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 
 export default function CardDialog({food}: {food: Data}) {
   let [isOpen, setIsOpen] = useState(false)
+  let [categories] = useState({
+    'Nguyên liệu': [
+      {
+        id: 1,
+        title: 'Does drinking coffee make you smarter?',
+        date: '5h ago',
+        commentCount: 5,
+        shareCount: 2,
+      },
+      {
+        id: 2,
+        title: "So you've bought coffee... now what?",
+        date: '2h ago',
+        commentCount: 3,
+        shareCount: 2,
+      },
+    ],
+    'Chuẩn bị': [
+      {
+        id: 1,
+        title: 'Is tech making coffee better or worse?',
+        date: 'Jan 7',
+        commentCount: 29,
+        shareCount: 16,
+      },
+      {
+        id: 2,
+        title: 'The most innovative things happening in coffee',
+        date: 'Mar 19',
+        commentCount: 24,
+        shareCount: 12,
+      },
+    ],
+    'Chế biến': [
+      {
+        id: 1,
+        title: 'Ask Me Anything: 10 answers to your questions about coffee',
+        date: '2d ago',
+        commentCount: 9,
+        shareCount: 5,
+      },
+      {
+        id: 2,
+        title: "The worst advice we've ever heard about coffee",
+        date: '4d ago',
+        commentCount: 1,
+        shareCount: 2,
+      },
+    ],
+  })
 
   function closeModal() {
     setIsOpen(false)
@@ -14,6 +64,10 @@ export default function CardDialog({food}: {food: Data}) {
 
   function openModal() {
     setIsOpen(true)
+  }
+
+  function classNames(...classes: any) {
+    return classes.filter(Boolean).join(' ')
   }
 
   return (
@@ -56,46 +110,56 @@ export default function CardDialog({food}: {food: Data}) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-xl transform overflow-hidden space-y-5 rounded-2xl bg-white p-6 shadow-xl shadow-neutral-300 transition-all">
-                  <Dialog.Title as="h3" className="text-lg font-bold leading-6 text-neutral-800">
-                    {food.name}
-                  </Dialog.Title>
-                  <div className='space-y-2'>
-                    <h4 className='text-neutral-700 font-semibold'>
-                      Nguyên liệu
-                    </h4>
-                    <ul className="list-none">
-                      {food.materials?.map(material => 
-                        <li key={material} className='text-sm'>
-                          {material}
-                        </li>
-                      )}
-                    </ul>
-                  </div>
-                  <div className='space-y-2'>
-                    <h4 className='text-neutral-700 font-semibold'>
-                      Chuẩn bị
-                    </h4>
-                    <ul className="list-none">
-                      {food.required?.map(required => 
-                        <li key={required} className='text-sm'>
-                          {required}
-                        </li>
-                      )}
-                    </ul>
-                  </div>
-                  <div className='space-y-2'>
-                    <h4 className='text-neutral-700 font-semibold'>
-                      Các bước thực hiện
-                    </h4>
-                    <ul className="list-none">
-                      {food.steps?.map(step => 
-                        <li key={step} className='text-sm'>
-                          {step}
-                        </li>
-                      )}
-                    </ul>
-                  </div>
+                <Dialog.Panel className="w-full max-w-xl transform overflow-hidden p-4 rounded-2xl bg-white shadow-xl shadow-neutral-300 transition-all">
+                  <Tab.Group>
+                    <Tab.List className="flex space-x-5">
+                      {Object.keys(categories).map(category => (
+                        <Tab 
+                          key={category}
+                          className={({selected}) =>
+                            classNames(
+                              "text-sm outline-none",
+                              selected
+                                ? 'text-neutral-800 font-medium'
+                                : 'text-neutral-400 font-normal'
+                            )
+                          }
+                        >
+                          <Dialog.Title as="h3">
+                            {category}
+                          </Dialog.Title>
+                        </Tab>
+                      ))}
+                    </Tab.List>
+                    <Tab.Panels className="mt-2">
+                      {Object.values(categories).map((posts, key) => (
+                        <Tab.Panel key={key}>
+                          <ul>
+                            {posts.map((post) => (
+                              <li
+                                key={post.id}
+                                className="relative rounded-md p-3 hover:bg-neutral-100"
+                              >
+                                <h3 className="text-sm font-medium leading-5">
+                                  {post.title}
+                                </h3>
+                                <ul className="mt-1 flex space-x-1 text-xs font-normal leading-4 text-gray-500">
+                                  <li>{post.date}</li>
+                                  <li>&middot;</li>
+                                  <li>{post.commentCount} comments</li>
+                                  <li>&middot;</li>
+                                  <li>{post.shareCount} shares</li>
+                                </ul>
+                              </li>
+                            ))}
+                          </ul>
+                        </Tab.Panel>
+                      ))}
+                    </Tab.Panels>
+                  </Tab.Group>
+                  <button className='text-sm text-neutral-400 mt-7 font-medium hover:text-neutral-800'>
+                    Thay đổi
+                  </button>
                 </Dialog.Panel>
               </Transition.Child>
             </div>
