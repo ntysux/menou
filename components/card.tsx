@@ -2,7 +2,7 @@
 
 import { Data } from '@/app/menu/page'
 import { Checkbox } from '@chakra-ui/react'
-import { Dialog, Transition, Tab } from '@headlessui/react'
+import { Dialog, Transition, Tab, Popover } from '@headlessui/react'
 import { IconPencil, IconTrash } from '@tabler/icons-react'
 import { Fragment, useState } from 'react'
 import { motion } from "framer-motion"
@@ -70,6 +70,23 @@ export default function CardDialog({food}: {food: Data}) {
 
   function classNames(...classes: any) {
     return classes.filter(Boolean).join(' ')
+  }
+
+  const container = {
+    visible: {
+      transition: {
+        delayChildren: 0.2,
+        staggerChildren: 0.1
+      }
+    }
+  }
+
+  const item = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1
+    }
   }
 
   return (
@@ -195,16 +212,49 @@ export default function CardDialog({food}: {food: Data}) {
                             leaveFrom="opacity-100 scale-100"
                             leaveTo="opacity-0 scale-95"
                           >
-                            <Dialog.Panel className="flex items-center space-x-3 p-3 rounded-2xl bg-neutral-800/75 backdrop-blur-[1px] shadow-xl transition-all">
-                              <button className='p-3 text-white rounded-full hover:bg-neutral-500/40'>
-                                <div className='p-2 bg-white rounded-full' />
-                              </button>
+                            <Dialog.Panel className="flex items-center space-x-3 p-2 rounded-xl bg-neutral-800/75 backdrop-blur-[1px] shadow-xl transition-all">
                               
-                              <button className='p-3 text-white rounded-full hover:bg-neutral-500/40'>
-                                <IconPencil size='18px' strokeWidth='2.7' />
+
+
+
+                              <Popover className="relative">
+                                <Popover.Button as='button' className='p-2 text-white rounded-full hover:bg-neutral-500/40'>
+                                  <div className='p-2 bg-white rounded-full' />
+                                </Popover.Button>
+                                <Popover.Overlay className="fixed inset-0" />
+                                <Transition
+                                  as={Fragment}
+                                  enter="transition ease-out duration-200"
+                                  enterFrom="opacity-0 translate-y-2"
+                                  enterTo="opacity-100 translate-y-0"
+                                  leave="transition ease-in duration-150"
+                                  leaveFrom="opacity-100 translate-y-0"
+                                  leaveTo="opacity-0 translate-y-2"
+                                >
+                                  <Popover.Panel className="absolute left-0 mt-5 z-10 p-2 rounded-full bg-neutral-800/75 backdrop-blur-[1px]">
+                                    <motion.ul
+                                      className='list-none flex space-x-3'
+                                      variants={container}
+                                      initial="hidden"
+                                      animate="visible"
+                                    >
+                                      {['bg-[#ec4899]', 'bg-[#8b5cf6]', 'bg-[#2dd4bf]', 'bg-white'].map((color, key) => 
+                                        <motion.li key={key} variants={item}>
+                                          <div className={`p-2 ${color} rounded-full`} />
+                                        </motion.li>
+                                      )}
+                                    </motion.ul>
+                                  </Popover.Panel>
+                                </Transition>
+                              </Popover>
+
+
+                              
+                              <button className='p-2 text-white rounded-full hover:bg-neutral-500/40'>
+                                <IconPencil size='18px' strokeWidth='2.5' />
                               </button>
-                              <button className='p-3 text-white rounded-full hover:bg-neutral-500/40'>
-                                <IconTrash size='18px' strokeWidth='2.7' />
+                              <button className='p-2 text-white rounded-full hover:bg-neutral-500/40'>
+                                <IconTrash size='18px' strokeWidth='2.5' />
                               </button>
                             </Dialog.Panel>
                           </Transition.Child>
