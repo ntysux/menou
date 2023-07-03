@@ -13,9 +13,9 @@ interface Feature {
 }
 
 const features: Feature[] = [
-  {name: 'Menu', href: '/menu', icon: <IconSwipe size='17px' />},
-  {name: 'Đã lưu', href: '/saved', icon: <IconStack2 size='17px' />},
-  {name: 'Thùng rác', href: '/trash', icon: <IconTrash size='17px' />},
+  {name: 'Menu', href: '/menu', icon: <IconSwipe size='17px' strokeWidth='2.7' />},
+  {name: 'Đã lưu', href: '/saved', icon: <IconStack2 size='17px' strokeWidth='2.7' />},
+  {name: 'Thùng rác', href: '/trash', icon: <IconTrash size='17px' strokeWidth='2.7' />}
 ]
 
 const container = {
@@ -42,7 +42,7 @@ export default function PersonalPopover() {
         <Popover.Button as='button' className="flex font-medium text-neutral-800 text-sm outline-none">
           Cá nhân
         </Popover.Button>
-        <Popover.Overlay className="fixed inset-0 bg-neutral-500/30" />
+        <Popover.Overlay className="fixed inset-0" />
         <Transition
           as={Fragment}
           enter="transition ease-out duration-200"
@@ -52,7 +52,7 @@ export default function PersonalPopover() {
           leaveFrom="opacity-100 translate-y-0"
           leaveTo="opacity-0 translate-y-2"
         >
-          <Popover.Panel className="absolute right-0 mt-3 z-10 p-4 rounded-lg bg-white shadow-xl shadow-neutral-200 ring-1 ring-neutral-200/75 ring-inset">
+          <Popover.Panel className="absolute right-0 mt-3 z-10 p-4 rounded-2xl bg-neutral-800/75 backdrop-blur-[1px] shadow-xl shadow-neutral-200">
             <motion.ul
               className='list-none space-y-5'
               variants={container}
@@ -62,10 +62,10 @@ export default function PersonalPopover() {
               {features.map(feature => 
                 <motion.li key={feature.name} className="min-w-max" variants={item}>
                   <Link href={feature.href} className="flex items-center gap-x-9">
-                    <span className="text-neutral-500">
+                    <span className="text-neutral-400">
                       {feature.icon}
                     </span>
-                    <p className="text-neutral-800 font-medium text-sm">
+                    <p className="text-white font-medium text-sm">
                       {feature.name}
                     </p>
                   </Link>
