@@ -3,11 +3,14 @@
 import { Data } from '@/app/menu/page'
 import { Checkbox } from '@chakra-ui/react'
 import { Dialog, Transition, Tab } from '@headlessui/react'
+import { IconPencil, IconTrash } from '@tabler/icons-react'
 import { Fragment, useState } from 'react'
+import { motion } from "framer-motion"
 
 export default function CardDialog({food}: {food: Data}) {
-  let [isOpen, setIsOpen] = useState(false)
-  let [categories] = useState({
+  const [isBaseOpen, setIsBaseOpen] = useState(false)
+  const [isActionOpen, setIsActionOpen] = useState(false)
+  const [categories] = useState({
     'Nguyên liệu': [
       {
         id: 1,
@@ -59,11 +62,10 @@ export default function CardDialog({food}: {food: Data}) {
   })
 
   function closeModal() {
-    setIsOpen(false)
+    setIsBaseOpen(false)
   }
-
   function openModal() {
-    setIsOpen(true)
+    setIsBaseOpen(true)
   }
 
   function classNames(...classes: any) {
@@ -85,7 +87,7 @@ export default function CardDialog({food}: {food: Data}) {
         <Checkbox variant='filled' size='lg' />
       </div>
 
-      <Transition show={isOpen} as={Fragment}>
+      <Transition show={isBaseOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child
             as={Fragment}
@@ -134,32 +136,83 @@ export default function CardDialog({food}: {food: Data}) {
                     <Tab.Panels className="mt-2">
                       {Object.values(categories).map((posts, key) => (
                         <Tab.Panel key={key}>
-                          <ul>
-                            {posts.map((post) => (
-                              <li
-                                key={post.id}
-                                className="relative rounded-md p-3 hover:bg-neutral-100"
-                              >
-                                <h3 className="text-sm font-medium leading-5">
-                                  {post.title}
-                                </h3>
-                                <ul className="mt-1 flex space-x-1 text-xs font-normal leading-4 text-gray-500">
-                                  <li>{post.date}</li>
-                                  <li>&middot;</li>
-                                  <li>{post.commentCount} comments</li>
-                                  <li>&middot;</li>
-                                  <li>{post.shareCount} shares</li>
-                                </ul>
-                              </li>
-                            ))}
-                          </ul>
+                          <motion.div
+                            initial={{ y: 10, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            exit={{ y: -10, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                          >
+                            <ul>
+                              {posts.map((post) => (
+                                <li
+                                  key={post.id}
+                                  className="relative rounded-md p-3 hover:bg-neutral-100"
+                                >
+                                  <h3 className="text-sm font-medium leading-5">
+                                    {post.title}
+                                  </h3>
+                                  <ul className="mt-1 flex space-x-1 text-xs font-normal leading-4 text-gray-500">
+                                    <li>{post.date}</li>
+                                    <li>&middot;</li>
+                                    <li>{post.commentCount} comments</li>
+                                    <li>&middot;</li>
+                                    <li>{post.shareCount} shares</li>
+                                  </ul>
+                                </li>
+                              ))}
+                            </ul>
+                          </motion.div>
                         </Tab.Panel>
                       ))}
                     </Tab.Panels>
                   </Tab.Group>
-                  <button className='text-sm text-neutral-400 mt-7 font-medium hover:text-neutral-800'>
+                  <button onClick={() => setIsActionOpen(true)} className='outline-none text-sm text-neutral-400 mt-7 font-medium hover:text-neutral-800'>
                     Thay đổi
                   </button>
+
+                  <Transition show={isActionOpen} as={Fragment}>
+                    <Dialog as="div" className="relative z-10" onClose={() => setIsActionOpen(false)}>
+                      <Transition.Child
+                        as={Fragment}
+                        enter="ease-out duration-300"
+                        enterFrom="opacity-0"
+                        enterTo="opacity-100"
+                        leave="ease-in duration-200"
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-0"
+                      >
+                        <div className="fixed inset-0 bg-neutral-500/30" />
+                      </Transition.Child>
+
+                      <div className="fixed inset-0 overflow-y-auto">
+                        <div className="flex min-h-full items-center justify-center">
+                          <Transition.Child
+                            as={Fragment}
+                            enter="ease-out duration-300"
+                            enterFrom="opacity-0 scale-95"
+                            enterTo="opacity-100 scale-100"
+                            leave="ease-in duration-200"
+                            leaveFrom="opacity-100 scale-100"
+                            leaveTo="opacity-0 scale-95"
+                          >
+                            <Dialog.Panel className="flex items-center space-x-3 p-3 rounded-2xl bg-neutral-800/75 backdrop-blur-[1px] shadow-xl transition-all">
+                              <button className='p-3 text-white rounded-full hover:bg-neutral-500/40'>
+                                <div className='p-2 bg-white rounded-full' />
+                              </button>
+                              
+                              <button className='p-3 text-white rounded-full hover:bg-neutral-500/40'>
+                                <IconPencil size='18px' strokeWidth='2.7' />
+                              </button>
+                              <button className='p-3 text-white rounded-full hover:bg-neutral-500/40'>
+                                <IconTrash size='18px' strokeWidth='2.7' />
+                              </button>
+                            </Dialog.Panel>
+                          </Transition.Child>
+                        </div>
+                      </div>
+                    </Dialog>
+                  </Transition>
+
                 </Dialog.Panel>
               </Transition.Child>
             </div>
