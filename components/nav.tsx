@@ -3,6 +3,7 @@ import Banner from "./banner"
 import Dashboard from "./dashboard"
 import NavMobile from "./nav.mobile"
 import PersonalPopover from "./personal.popover"
+import Link from "next/link"
 
 export default function Nav() {
   const pathname = usePathname()
@@ -15,9 +16,11 @@ export default function Nav() {
         </h1>
         <div className="space-x-9 hidden sm:flex">
           <PersonalPopover />
-          <button className="font-medium text-neutral-800 text-sm">
-            Cộng đồng
-          </button>
+          <Link href='/community' className="flex">
+            <button className="font-medium text-neutral-800 text-sm">
+              Cộng đồng
+            </button>
+          </Link>
         </div>
         <div className="flex sm:hidden">
           <NavMobile />
