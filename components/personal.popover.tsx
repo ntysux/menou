@@ -4,7 +4,7 @@ import Link from "next/link"
 import { Fragment } from 'react'
 import { motion } from "framer-motion"
 import { Popover, Transition } from '@headlessui/react'
-import { IconStack2, IconSwipe, IconTrash } from "@tabler/icons-react"
+import { IconCopy, IconSwipe, IconTrash } from "@tabler/icons-react"
 
 interface Feature {
   name: string,
@@ -14,7 +14,7 @@ interface Feature {
 
 const features: Feature[] = [
   {name: 'Menu', href: '/menu', icon: <IconSwipe size='17px' strokeWidth='2.7' />},
-  {name: 'Đã lưu', href: '/saved', icon: <IconStack2 size='17px' strokeWidth='2.7' />},
+  {name: 'Đã lưu', href: '/saved', icon: <IconCopy size='17px' strokeWidth='2.7' />},
   {name: 'Thùng rác', href: '/trash', icon: <IconTrash size='17px' strokeWidth='2.7' />}
 ]
 
