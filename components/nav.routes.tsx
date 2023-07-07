@@ -35,15 +35,16 @@ const item = {
   }
 }
 
-export default function PersonalPopover() {
+export default function NavRoutes() {
   return (
-    <>
+    <Popover.Group className="hidden sm:flex sm:space-x-9">
       <Popover className="relative">
         {({ close }) => (
           <>
-            <Popover.Button as='button' className="flex font-medium text-neutral-800 text-sm outline-none">
+            <Popover.Button as='button' className="text-neutral-800 text-sm font-medium outline-none leading-none">
               Cá nhân
             </Popover.Button>
+            
             <Popover.Overlay className="fixed inset-0" />
             <Transition
               as={Fragment}
@@ -64,7 +65,7 @@ export default function PersonalPopover() {
                   {features.map(feature => 
                     <motion.li 
                       key={feature.name} 
-                      className="min-w-max" 
+                      className="min-w-max"
                       variants={item}
                       onClick={close}
                     >
@@ -76,7 +77,7 @@ export default function PersonalPopover() {
                           {feature.name}
                         </p>
                       </Link>
-                    </motion.li>  
+                    </motion.li>
                   )}
                 </motion.ul>
               </Popover.Panel>
@@ -84,6 +85,17 @@ export default function PersonalPopover() {
           </>
         )}
       </Popover>
-    </>
+
+      <Link href='/community'>
+        <button className="text-sm text-neutral-800 font-medium outline-none leading-none">
+          Cộng đồng
+        </button>
+      </Link>
+      <Link href='/club'>
+        <button className="text-sm text-neutral-800 font-medium outline-none leading-none">
+          Hội quán
+        </button>
+      </Link>
+    </Popover.Group>
   )
 }

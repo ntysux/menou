@@ -2,12 +2,12 @@ import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { IconAlignRight, IconX } from '@tabler/icons-react'
 
-export default function NavMobile() {
+export default function NavRoutesMobile() {
   const [open, setOpen] = useState(false)
 
   return (
     <>
-      <button onClick={() => setOpen(true)} className='outline-none'>
+      <button onClick={() => setOpen(true)} className='outline-none sm:hidden'>
         <IconAlignRight size='20px' strokeWidth='2.3' className='text-neutral-800' />
       </button>
 
