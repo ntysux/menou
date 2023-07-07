@@ -39,41 +39,50 @@ export default function PersonalPopover() {
   return (
     <>
       <Popover className="relative">
-        <Popover.Button as='button' className="flex font-medium text-neutral-800 text-sm outline-none">
-          Cá nhân
-        </Popover.Button>
-        <Popover.Overlay className="fixed inset-0" />
-        <Transition
-          as={Fragment}
-          enter="transition ease-out duration-200"
-          enterFrom="opacity-0 translate-y-2"
-          enterTo="opacity-100 translate-y-0"
-          leave="transition ease-in duration-150"
-          leaveFrom="opacity-100 translate-y-0"
-          leaveTo="opacity-0 translate-y-2"
-        >
-          <Popover.Panel className="absolute right-0 mt-3 z-10 p-4 rounded-2xl bg-neutral-800/75 backdrop-blur-[1px] shadow-xl shadow-neutral-200">
-            <motion.ul
-              className='list-none space-y-5'
-              variants={container}
-              initial="hidden"
-              animate="visible"
+        {({ close }) => (
+          <>
+            <Popover.Button as='button' className="flex font-medium text-neutral-800 text-sm outline-none">
+              Cá nhân
+            </Popover.Button>
+            <Popover.Overlay className="fixed inset-0" />
+            <Transition
+              as={Fragment}
+              enter="transition ease-out duration-200"
+              enterFrom="opacity-0 translate-y-2"
+              enterTo="opacity-100 translate-y-0"
+              leave="transition ease-in duration-150"
+              leaveFrom="opacity-100 translate-y-0"
+              leaveTo="opacity-0 translate-y-2"
             >
-              {features.map(feature => 
-                <motion.li key={feature.name} className="min-w-max" variants={item}>
-                  <Link href={feature.href} className="flex items-center gap-x-9">
-                    <span className="text-neutral-400">
-                      {feature.icon}
-                    </span>
-                    <p className="text-white font-medium text-sm">
-                      {feature.name}
-                    </p>
-                  </Link>
-                </motion.li>  
-              )}
-            </motion.ul>
-          </Popover.Panel>
-        </Transition>
+              <Popover.Panel className="absolute right-0 mt-3 z-10 p-4 rounded-2xl bg-neutral-800/75 backdrop-blur-[1px] shadow-xl shadow-neutral-200">
+                <motion.ul
+                  className='list-none space-y-5'
+                  variants={container}
+                  initial="hidden"
+                  animate="visible"
+                >
+                  {features.map(feature => 
+                    <motion.li 
+                      key={feature.name} 
+                      className="min-w-max" 
+                      variants={item}
+                      onClick={close}
+                    >
+                      <Link href={feature.href} className="flex items-center gap-x-9">
+                        <span className="text-neutral-400">
+                          {feature.icon}
+                        </span>
+                        <p className="text-white font-medium text-sm">
+                          {feature.name}
+                        </p>
+                      </Link>
+                    </motion.li>  
+                  )}
+                </motion.ul>
+              </Popover.Panel>
+            </Transition>
+          </>
+        )}
       </Popover>
     </>
   )
