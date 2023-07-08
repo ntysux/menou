@@ -2,9 +2,9 @@
 
 import './globals.css'
 import { Quicksand } from 'next/font/google'
+import { Providers } from './providers'
 import { usePathname } from 'next/navigation'
 import Nav from '@/components/nav'
-import { Providers } from './providers'
 
 const quicksand = Quicksand({subsets: ['vietnamese']})
 
@@ -24,10 +24,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={quicksand.className}>
         <Providers>
-          <div className='mx-3 sm:w-screen sm:max-w-5xl sm:mx-auto'>
-            { pathname !== '/' && <Nav /> }
-            {children}
-          </div>
+          { pathname !== '/' && <Nav /> }
+          {children}
         </Providers>
       </body>
     </html>
