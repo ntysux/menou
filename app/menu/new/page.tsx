@@ -134,7 +134,7 @@ export default function NewPage() {
 
   return (
     <>
-      <div className="mx-3 my-9 space-y-16 sm:w-screen sm:max-w-5xl sm:mx-auto">
+      <div className="my-9 space-y-16">
         <input 
           type="text" 
           placeholder="Tên món ăn" 

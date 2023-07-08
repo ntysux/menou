@@ -15,7 +15,7 @@ const clubs: Clubs[] = [
 export default function AllClubPage() {
   return (
     <>
-      <div className="rounded-xl shadow shadow-neutral-200 mx-3 sm:w-screen sm:max-w-5xl sm:mx-auto">
+      <div className="rounded-xl shadow shadow-neutral-200 p-5">
         <table className="table-auto w-full text-left border-separate border-spacing-5">
           <thead>
             <tr className="text-sm text-neutral-800">

@@ -16,7 +16,7 @@ export default function ClubPage() {
   return (
     <>
       <ClubForeword />
-      <div className="space-y-9 mx-3 my-5 sm:w-screen sm:max-w-5xl sm:mx-auto">
+      <div className="space-y-9 my-5">
         <div className="space-y-3">
           <h2 className="text-neutral-400 text-sm font-medium">
             Khám phá
