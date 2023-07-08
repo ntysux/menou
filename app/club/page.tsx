@@ -1,4 +1,5 @@
 import ClubForeword from "@/components/club.foreword"
+import Link from "next/link"
 
 interface Clubs {
   name: string,
@@ -23,9 +24,11 @@ export default function ClubPage() {
           <div className="p-5 shadow shadow-neutral-200 rounded-xl">
             <table className="table-auto w-full text-left border-separate border-spacing-5">
               <caption className="caption-bottom">
-                <button className="text-xs text-sky-500 font-medium hover:underline hover:decoration-1">
-                  Xem thêm
-                </button>
+                <Link href='/club/all'>
+                  <button className="text-xs text-sky-500 font-medium hover:underline hover:decoration-1">
+                    Xem thêm
+                  </button>
+                </Link>
               </caption>
               <thead>
                 <tr className="text-sm text-neutral-800">
