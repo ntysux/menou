@@ -25,7 +25,9 @@ export default function RootLayout({
       <body className={quicksand.className}>
         <Providers>
           { pathname !== '/' && <Nav /> }
-          {children}
+          <div className="mx-3 sm:w-screen sm:max-w-5xl sm:mx-auto">
+            {children}
+          </div>
         </Providers>
       </body>
     </html>
