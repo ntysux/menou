@@ -3,6 +3,7 @@ import Banner from "./banner"
 import Dashboard from "./dashboard"
 import NavRoutesMobile from "./nav.routes.mobile"
 import NavRoutes from "./nav.routes"
+import BannerUser from "./banner.user"
 
 export default function Nav() {
   const pathname = usePathname()
@@ -19,7 +20,7 @@ export default function Nav() {
       {
         pathname === '/menu' &&
         <div className="space-y-3">
-          <Banner />
+          {true ? <BannerUser /> : <Banner />}
           <Dashboard />
         </div>
       }
