@@ -7,4 +7,23 @@
     width: 0 !important;
     display: none;
   }
+  @keyframes infinity-color {
+    0% {color: #f97316}
+    10% {color: #84cc16}
+    20% {color: #f59e0b}
+    30% {color: #06b6d4}
+    40% {color: #22c55e}
+    50% {color: #eab308}
+    60% {color: #22c55e}
+    70% {color: #8b5cf6}
+    80% {color: #14b8a6}
+    90% {color: #d946ef}
+    100% {color: #10b981}
+  }
+  .check-infinity {
+    animation-name: infinity-color;
+    animation-duration: 1s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+  }
 }
