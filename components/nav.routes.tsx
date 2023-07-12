@@ -55,22 +55,22 @@ export default function NavRoutes() {
               leaveFrom="opacity-100 translate-y-0"
               leaveTo="opacity-0 translate-y-2"
             >
-              <Popover.Panel className="absolute right-0 mt-3 z-10 p-4 rounded-2xl bg-neutral-800/75 backdrop-blur-[1px] shadow-xl shadow-neutral-200">
+              <Popover.Panel className="absolute right-0 mt-3 z-10 rounded-2xl bg-neutral-800/75 backdrop-blur-[1px] shadow-xl shadow-neutral-200">
                 <motion.ul
-                  className='list-none space-y-5'
+                  className='list-none'
                   variants={container}
                   initial="hidden"
                   animate="visible"
                 >
                   {features.map(feature => 
-                    <motion.li 
+                    <motion.li
                       key={feature.name} 
-                      className="min-w-max"
+                      className="min-w-max group"
                       variants={item}
                       onClick={close}
                     >
-                      <Link href={feature.href} className="flex items-center gap-x-9">
-                        <span className="text-neutral-400">
+                      <Link href={feature.href} className="flex items-center gap-x-9 px-3.5 py-3">
+                        <span className="text-neutral-400 group-hover:text-white">
                           {feature.icon}
                         </span>
                         <p className="text-white font-medium text-sm">
