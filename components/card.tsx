@@ -4,15 +4,19 @@ import { Data } from '@/app/menu/page'
 import { Checkbox } from '@chakra-ui/react'
 import CardDialog from './card.dialog'
 
-export default function Card({food}: {food: Data}) {
+export default function Card({
+  food
+}: {
+  food: Data
+}) {
   return (
     <>
       <CardDialog>
-        {setDialogOpen => (
+        {openDialog => (
           <div className="flex items-center p-3 rounded-lg hover:ring-1 hover:ring-neutral-200 hover:ring-inset">
             <div 
               className='flex-1'
-              onClick={() => setDialogOpen(true)}
+              onClick={() => openDialog(true)}
             >
               <p className="text-sm font-bold text-neutral-700">
                 {food.name}
