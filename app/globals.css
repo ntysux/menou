@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer utilities {
+  *[data-focus] {
+    box-shadow: none !important;
+  }
+  
   #comment-dialog::-webkit-scrollbar { 
     width: 0 !important;
     display: none;
