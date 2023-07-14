@@ -62,21 +62,23 @@ export default function NavRoutes() {
                   initial="hidden"
                   animate="visible"
                 >
-                  {features.map(feature => 
+                  {features.map((feature, index) => 
                     <motion.li
                       key={feature.name} 
                       className="min-w-max group"
                       variants={item}
                       onClick={close}
                     >
-                      <Link href={feature.href} className="flex items-center gap-x-9 px-3.5 py-3">
-                        <span className="text-neutral-400 group-hover:text-white">
-                          {feature.icon}
-                        </span>
-                        <p className="text-white font-medium text-sm">
-                          {feature.name}
-                        </p>
-                      </Link>
+                      <button disabled={index === 1 ? true : false} className="disabled:opacity-30">
+                        <Link href={index === 1 ? '#' : feature.href} className="flex items-center gap-x-9 px-3.5 py-3">
+                          <span className="text-neutral-400 group-hover:text-white">
+                            {feature.icon}
+                          </span>
+                          <p className="text-white font-medium text-sm">
+                            {feature.name}
+                          </p>
+                        </Link>
+                      </button>
                     </motion.li>
                   )}
                 </motion.ul>
