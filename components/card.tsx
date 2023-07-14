@@ -25,7 +25,7 @@ export default function Card({
                 {food.author}
               </span></i>
             </div>
-            <Checkbox variant='filled' size='lg' />
+            <Checkbox variant='outline' size='lg' />
           </div>
         )}
       </CardDialog>
