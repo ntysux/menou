@@ -4,69 +4,42 @@ import { Dialog, Transition, Tab } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import { motion } from "framer-motion"
 import CardActions from './card.actions'
+import { Data } from '@/app/menu/page'
+import { Checkbox } from '@chakra-ui/react'
+
+const tabList: string[] = ['Nguyên liệu', 'Chuẩn bị', 'Chế biến']
+
+const data: Data = {
+  name: 'Mỳ không tôm', 
+  author: 'ntysux', 
+  materials: ['1 gói mỳ', 'rau(nếu có)', '1 quả trứng', 'tương(nếu thích)'], 
+  required: ['1 nôì', '1 bát lớn', '1 đôi đũa', '1 thìa(nếu có)'],
+  steps: ['Đun nước sôi', 'Cho rau và trứng vào trong 5 phút sau đó thả mỳ vào', 'cho vào bát và thưởng thức']
+}
+
+const {materials, required, steps} = data
+const tabPanels = [materials, required, steps]
+
 
 export default function CardDialog({
   children
 }: {
   children: (setState: React.Dispatch<React.SetStateAction<boolean>>) => React.ReactNode
 }) {
-  const [isDialogOpen, setDialogOpen] = useState(false)
-  const [categories] = useState({
-    'Nguyên liệu': [
-      {
-        id: 1,
-        title: 'Does drinking coffee make you smarter?',
-        date: '5h ago',
-        commentCount: 5,
-        shareCount: 2,
-      },
-      {
-        id: 2,
-        title: "So you've bought coffee... now what?",
-        date: '2h ago',
-        commentCount: 3,
-        shareCount: 2,
-      },
-    ],
-    'Chuẩn bị': [
-      {
-        id: 1,
-        title: 'Is tech making coffee better or worse?',
-        date: 'Jan 7',
-        commentCount: 29,
-        shareCount: 16,
-      },
-      {
-        id: 2,
-        title: 'The most innovative things happening in coffee',
-        date: 'Mar 19',
-        commentCount: 24,
-        shareCount: 12,
-      },
-    ],
-    'Chế biến': [
-      {
-        id: 1,
-        title: 'Ask Me Anything: 10 answers to your questions about coffee',
-        date: '2d ago',
-        commentCount: 9,
-        shareCount: 5,
-      },
-      {
-        id: 2,
-        title: "The worst advice we've ever heard about coffee",
-        date: '4d ago',
-        commentCount: 1,
-        shareCount: 2,
-      },
-    ],
-  })
+  const [isDialogOpen, setDialogOpen] = useState<boolean>(false)
+  const [materialsChecked, setMaterialsChecked] = useState<boolean[]>(Array(data.materials?.length).fill(false))
+
+  function handleMaterialsChecked(index: number, isChecked: boolean) {
+    setMaterialsChecked([
+      ...materialsChecked.slice(0, index), 
+      isChecked, 
+      ...materialsChecked.slice(index + 1)
+    ])
+  }
 
   function classNames(...classes: any) {
     return classes.filter(Boolean).join(' ')
   }
-
-  
 
   return (
     <>
@@ -87,7 +60,7 @@ export default function CardDialog({
           </Transition.Child>
 
           <div className="fixed inset-0 overflow-y-auto">
-            <div className="flex min-h-full items-center justify-center p-4">
+            <div className="flex min-h-full items-center justify-center p-3">
               <Transition.Child
                 as={Fragment}
                 enter="ease-out duration-300"
@@ -97,10 +70,10 @@ export default function CardDialog({
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-xl transform overflow-hidden p-4 rounded-2xl bg-white shadow-xl shadow-neutral-300 transition-all">
+                <Dialog.Panel className="w-full max-w-xl transform overflow-hidden p-5 rounded-2xl bg-white shadow-xl shadow-neutral-300 transition-all">
                   <Tab.Group>
                     <Tab.List className="flex space-x-5">
-                      {Object.keys(categories).map(category => (
+                      {tabList.map(category => (
                         <Tab 
                           key={category}
                           className={({selected}) =>
@@ -119,7 +92,7 @@ export default function CardDialog({
                       ))}
                     </Tab.List>
                     <Tab.Panels className="mt-2">
-                      {Object.values(categories).map((posts, key) => (
+                      {tabPanels.map((tabPanel, key) => (
                         <Tab.Panel key={key}>
                           <motion.div
                             initial={{ y: 10, opacity: 0 }}
@@ -128,21 +101,26 @@ export default function CardDialog({
                             transition={{ duration: 0.2 }}
                           >
                             <ul>
-                              {posts.map((post) => (
+                              {tabPanel?.map((tab, index) => (
                                 <li
-                                  key={post.id}
-                                  className="relative rounded-md p-3 hover:bg-neutral-100"
+                                  key={index}
+                                  className="p-1 text-neutral-800 text-sm font-medium"
                                 >
-                                  <h3 className="text-sm font-medium leading-5">
-                                    {post.title}
-                                  </h3>
-                                  <ul className="mt-1 flex space-x-1 text-xs font-normal leading-4 text-gray-500">
-                                    <li>{post.date}</li>
-                                    <li>&middot;</li>
-                                    <li>{post.commentCount} comments</li>
-                                    <li>&middot;</li>
-                                    <li>{post.shareCount} shares</li>
-                                  </ul>
+                                  {key === 0 ?
+                                    <div className='flex items-center space-x-1'>
+                                      <Checkbox
+                                        isChecked={materialsChecked[index]}
+                                        size='lg'
+                                        variant='outline'
+                                        onChange={e => handleMaterialsChecked(index, e.target.checked)}
+                                      />
+                                      <span className={`${materialsChecked[index] && 'line-through text-neutral-400/75'}`}>
+                                        {tab}
+                                      </span>
+                                    </div>
+                                  :
+                                    tab
+                                  }
                                 </li>
                               ))}
                             </ul>
