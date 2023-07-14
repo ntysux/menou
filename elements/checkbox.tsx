@@ -3,20 +3,21 @@ import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
 
 const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(checkboxAnatomy.keys)
 
-const filled = definePartsStyle({
+const outline = definePartsStyle({
   control: {
     m: 1,
-    rounded: 'full',
+    rounded: 'lg',
     borderColor: '#d4d4d4',
     _checked: {
-      bg: '#d4d4d4',
-      borderColor: '#d4d4d4',
+      bg: 'white',
+      color: '#525252',
+      borderColor: '#525252',
       _hover: {
-        bg: '#d4d4d4',
-        borderColor: '#d4d4d4'
+        bg: 'white',
+        borderColor: '#525252'
       }
     }
   }
 })
 
-export const checkboxTheme = defineMultiStyleConfig({variants: {filled}})
+export const checkboxTheme = defineMultiStyleConfig({variants: {outline}})
