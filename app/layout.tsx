@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import quicksand from './_ui/font'
+import { comfortaa } from './_ui/font'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -14,7 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={quicksand.className}>
+      <body className={comfortaa.className}>
         {children}
       </body>
     </html>
