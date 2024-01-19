@@ -81,9 +81,9 @@ export default function Page() {
               </h2>
             </div>
             <div className="space-y-5">
-              <Card />
-              <Card />
-              <Card />
+              <Card goBtn />
+              <Card goBtn />
+              <Card goBtn />
             </div>
             <div className="text-center">
               <button className="outline-none">

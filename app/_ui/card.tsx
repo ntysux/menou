@@ -1,14 +1,19 @@
 'use client'
 
-import { IconBookmark, IconBookmarkFilled, IconDiscountCheckFilled, IconHeart } from "@tabler/icons-react"
+import { IconArrowNarrowRight, IconBookmark, IconBookmarkFilled, IconDiscountCheckFilled, IconHeart } from "@tabler/icons-react"
 import { useState } from "react"
 import { motion } from 'framer-motion'
 
-export default function Card() {
+interface Props {
+  saveBtn?: boolean
+  goBtn?: boolean
+}
+
+export default function Card({saveBtn, goBtn}: Props) {
   const [selected, setSelected] = useState(false)
   
   return (
-    <div className="space-y-1">
+    <div className="space-y-1 group">
       <div className="px-3 pt-3 pb-16 bg-hero rounded-lg space-y-1 relative">
         <div className="bg-neutral-950/75 w-fit flex items-center gap-1 p-1 rounded-sm">
           <IconDiscountCheckFilled size='17px' className="text-cyan-400" />
@@ -21,14 +26,23 @@ export default function Card() {
         </time>
 
         <div className="absolute bottom-3 right-3 flex items-center">
-          <motion.button 
-            whileTap={{ scale: 1.2 }}
-            onClick={() => setSelected(!selected)}
-            className="bg-neutral-950/75 p-1.5 rounded-full"
-          >
-            {selected && <IconBookmarkFilled size='17px' strokeWidth='2' className="text-neutral-300" />}
-            {!selected && <IconBookmark size='17px' strokeWidth='2' className="text-neutral-300" />}
-          </motion.button>
+          {
+            saveBtn &&
+            <motion.button 
+              whileTap={{ scale: 1.2 }}
+              onClick={() => setSelected(!selected)}
+              className="bg-neutral-950/75 p-1.5 rounded-full"
+            >
+              {selected && <IconBookmarkFilled size='17px' className="text-neutral-300" />}
+              {!selected && <IconBookmark size='17px' className="text-neutral-300" />}
+            </motion.button>  
+          }
+          {
+            goBtn &&
+            <button className="bg-neutral-950/75 p-1.5 rounded-full">
+              <IconArrowNarrowRight size='17px' className="text-neutral-300 group-hover:text-white" />
+            </button>
+          }
         </div>
       </div>
       <div className="flex items-center justify-between">
