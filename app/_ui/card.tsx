@@ -42,7 +42,7 @@ export default function Card({
             <motion.button 
               whileTap={{ scale: 1.2 }}
               onClick={() => setSelected(!selected)}
-              className="bg-neutral-950/75 p-1.5 rounded-full dark:bg-neutral-950/50"
+              className="outline-none bg-neutral-950/75 p-1.5 rounded-full dark:bg-neutral-950/50"
             >
               {selected && <IconBookmarkFilled size='17px' className="text-white" />}
               {!selected && <IconBookmark size='17px' className="text-neutral-400" />}
@@ -50,7 +50,7 @@ export default function Card({
           }
           {
             goBtn &&
-            <button className="bg-neutral-950/75 p-1.5 rounded-full dark:bg-neutral-950/50">
+            <button className="outline-none bg-neutral-950/75 p-1.5 rounded-full dark:bg-neutral-950/50">
               <IconArrowNarrowRight size='17px' className="text-neutral-400 group-hover:text-white" />
             </button>
           }
